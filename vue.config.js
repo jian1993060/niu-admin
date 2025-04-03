@@ -133,7 +133,7 @@ const vueConfig = {
     proxy: {
       '/api': {
         target: 'https://hash-pay.org/api/',
-       // target: 'http://127.0.0.1:10023/api/',
+        //target: 'http://127.0.0.1:10023/api/',
         ws: false,
         changeOrigin: true,
         pathRewrite: {

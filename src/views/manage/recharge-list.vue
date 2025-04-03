@@ -65,7 +65,7 @@
         <a v-if="record.payType !== '3'" @click="showCzImgModel(record)">查看充值截图</a>
       </span>
       <span slot="action" slot-scope="text, record">    
-        <a v-if="record.status != '1'" @click="showReviewModal(record)">{{ record.status == '3'?'审核':'重新审核' }}</a>
+        <a v-if="record.status == '3'" @click="showReviewModal(record)">审核</a>
       </span>
     </s-table>
 
@@ -129,6 +129,10 @@ const columns = [
   {
     title: '截图',
     dataIndex: 'img'
+  },
+  {
+    title: '拒绝理由',
+    dataIndex: 'info'
   },
   {
     title: '审核状态',
