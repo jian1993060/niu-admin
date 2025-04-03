@@ -64,6 +64,22 @@ export const asyncRouterMap = [
         ]
       },
       {
+        path: 'cloudOrder',
+        name: 'CloudOrder',
+        component: RouteView,
+        redirect: '/cloudOrder/cloudOrder-list',
+        meta: { title: '挖矿订单', icon: 'table' },
+        hideChildrenInMenu: true, // 强制显示 MenuItem 而不是 SubMenu
+        children: [
+            {
+                path: '/cloudOrder/cloudOrder-list',
+                name: 'CloudOrderManageList',
+                component: () => import('@/views/manage/cloudOrder-list'),
+                meta: { title: '挖矿订单', keepAlive: true }
+            }
+        ]
+      },
+      {
         path: 'secondOrder',
         name: 'SecondOrder',
         component: RouteView,
@@ -92,6 +108,22 @@ export const asyncRouterMap = [
                 name: 'SecondList',
                 component: () => import('@/views/manage/second-list'),
                 meta: { title: '秒合约产品', keepAlive: true }
+            }
+        ]
+      },
+      {
+        path: 'cloud',
+        name: 'Cloud',
+        component: RouteView,
+        redirect: '/cloud/cloud-list',
+        meta: { title: '云挖矿产品', icon: 'dollar' },
+        hideChildrenInMenu: true, // 强制显示 MenuItem 而不是 SubMenu
+        children: [
+            {
+                path: '/cloud/cloud-list',
+                name: 'CloudList',
+                component: () => import('@/views/manage/cloud-list'),
+                meta: { title: '云挖矿产品', keepAlive: true }
             }
         ]
       },

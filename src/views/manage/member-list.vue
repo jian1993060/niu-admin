@@ -179,10 +179,10 @@ export default {
       this.userType = {}
     },
     detailUser(record) {
-      // userDetail(record.id).then(res => {
-      //   this.$message.success('查询成功')
-      //   this.$refs.table.refresh(true)
-      // })
+      userDetail(record.id).then(res => {
+        this.$message.success('查询成功')
+        this.$refs.table.refresh(true)
+      })
     }
 
   }

@@ -231,4 +231,40 @@ export function secondDel (parameter) {
   })
 }
 
+/**
+ *云挖矿
+ * @param {*} parameter
+ * @returns
+ */
+ export function cloudList (parameter) {
+  return request({
+      url: 'cloud/list',
+      method: 'post',
+      data: parameter
+  })
+}
+export function cloudOrderList (parameter) {
+  return request({
+      url: 'cloud/order/list',
+      method: 'post',
+      data: parameter
+  })
+}
+
+export function cloudEdit (parameter) {
+  return request({
+      url: 'cloud/update',
+      method: 'post',
+      data: parameter
+  })
+}
+
+export function cloudDel (parameter) {
+  return request({
+      url: 'cloud/del/'+parameter,
+      method: 'post',
+      data: parameter
+  })
+}
+
 
