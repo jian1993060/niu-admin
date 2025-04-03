@@ -207,6 +207,13 @@ export function secondList (parameter) {
       data: parameter
   })
 }
+export function secondOrderList (parameter) {
+  return request({
+      url: 'second/order/list',
+      method: 'post',
+      data: parameter
+  })
+}
 
 export function secondEdit (parameter) {
   return request({

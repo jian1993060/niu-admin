@@ -48,6 +48,54 @@ export const asyncRouterMap = [
         ]
       },
       {
+        path: 'order',
+        name: 'Order',
+        component: RouteView,
+        redirect: '/order/order-list',
+        meta: { title: '现货订单', icon: 'table' },
+        hideChildrenInMenu: true, // 强制显示 MenuItem 而不是 SubMenu
+        children: [
+            {
+                path: '/order/order-list',
+                name: 'OrderManageList',
+                component: () => import('@/views/manage/order-list'),
+                meta: { title: '现货订单', keepAlive: true }
+            }
+        ]
+      },
+      {
+        path: 'secondOrder',
+        name: 'SecondOrder',
+        component: RouteView,
+        redirect: '/secondOrder/secondOrder-list',
+        meta: { title: '秒合约订单', icon: 'table' },
+        hideChildrenInMenu: true, // 强制显示 MenuItem 而不是 SubMenu
+        children: [
+            {
+                path: '/secondOrder/secondOrder-list',
+                name: 'SecondOrderManageList',
+                component: () => import('@/views/manage/secondOrder-list'),
+                meta: { title: '秒合约订单', keepAlive: true }
+            }
+        ]
+      },
+      {
+        path: 'second',
+        name: 'Second',
+        component: RouteView,
+        redirect: '/second/second-list',
+        meta: { title: '秒合约产品', icon: 'dollar' },
+        hideChildrenInMenu: true, // 强制显示 MenuItem 而不是 SubMenu
+        children: [
+            {
+                path: '/second/second-list',
+                name: 'SecondList',
+                component: () => import('@/views/manage/second-list'),
+                meta: { title: '秒合约产品', keepAlive: true }
+            }
+        ]
+      },
+      {
         path: 'stock',
         name: 'Stock',
         component: RouteView,
@@ -60,22 +108,6 @@ export const asyncRouterMap = [
                 name: 'StockList',
                 component: () => import('@/views/manage/stock-list'),
                 meta: { title: '币种管理', keepAlive: true }
-            }
-        ]
-      },
-      {
-        path: 'second',
-        name: 'Second',
-        component: RouteView,
-        redirect: '/second/second-list',
-        meta: { title: '秒合约管理', icon: 'dollar' },
-        hideChildrenInMenu: true, // 强制显示 MenuItem 而不是 SubMenu
-        children: [
-            {
-                path: '/second/second-list',
-                name: 'SecondList',
-                component: () => import('@/views/manage/second-list'),
-                meta: { title: '秒合约管理', keepAlive: true }
             }
         ]
       },
@@ -124,22 +156,6 @@ export const asyncRouterMap = [
                 name: 'RechargeManageList',
                 component: () => import('@/views/manage/recharge-list.vue'),
                 meta: { title: '充值管理', keepAlive: true }
-            }
-        ]
-      },
-      {
-        path: 'order',
-        name: 'Order',
-        component: RouteView,
-        redirect: '/order/order-list',
-        meta: { title: '订单管理', icon: 'table' },
-        hideChildrenInMenu: true, // 强制显示 MenuItem 而不是 SubMenu
-        children: [
-            {
-                path: '/order/order-list',
-                name: 'OrderManageList',
-                component: () => import('@/views/manage/order-list'),
-                meta: { title: '订单管理', keepAlive: true }
             }
         ]
       }

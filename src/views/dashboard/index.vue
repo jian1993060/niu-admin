@@ -56,12 +56,8 @@ export default {
         this.girds = [
           { label: '充值金额', num: res.data.rechargeAmount || 0 },
           { label: '提现金额', num: res.data.withdrawAmount || 0 },
-          { label: '充值笔数', num: res.data.rechargeNum || 0 },
-          { label: '提现笔数', num: res.data.withdrawNum || 0 },
-          { label: '交易金额', num: res.data.orderAmount || 0 },
-          { label: '买入金额', num: res.data.buyAmount || 0 },
-          { label: '卖出金额', num: res.data.saleAmount || 0 } ,
-          { label: '交易笔数', num: res.data.orderNum || 0 }       
+          { label: '现货交易金额', num: res.data.rechargeNum || 0 },
+          { label: '秒合约交易金额', num: res.data.withdrawNum || 0 }
         ]
       })
     }
