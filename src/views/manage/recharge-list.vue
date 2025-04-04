@@ -9,14 +9,14 @@
             </a-form-item>
           </a-col>
           <a-col :md="4" :sm="24">
-              <a-form-item label="审核状态">
-                <a-select v-model="queryParam.status" placeholder="请选择" default-value="0">
-                  <a-select-option value="3">待审核</a-select-option>
-                  <a-select-option value="1">审核通过</a-select-option>
-                  <a-select-option value="2">审核拒绝</a-select-option>
-                </a-select>
-              </a-form-item>
-            </a-col>
+            <a-form-item label="审核状态">
+              <a-select v-model="queryParam.status" placeholder="请选择" default-value="0">
+                <a-select-option value="3">待审核</a-select-option>
+                <a-select-option value="1">审核通过</a-select-option>
+                <a-select-option value="2">审核拒绝</a-select-option>
+              </a-select>
+            </a-form-item>
+          </a-col>
           <a-col :md="4" :sm="24">
             <a-form-item label="开始日期">
               <a-date-picker
@@ -42,12 +42,15 @@
               </a-date-picker>
             </a-form-item>
           </a-col>
-          <a-col :md="!advanced && 8 || 24" :sm="24">
-            <span class="table-page-search-submitButtons" :style="advanced && { float: 'right', overflow: 'hidden' } || {} ">
+          <a-col :md="(!advanced && 8) || 24" :sm="24">
+            <span
+              class="table-page-search-submitButtons"
+              :style="(advanced && { float: 'right', overflow: 'hidden' }) || {}"
+            >
               <a-button type="primary" @click="$refs.table.refresh(true)">查询</a-button>
-              <a-button style="margin-left: 8px" @click="() => this.queryParam = {}">重置</a-button>
+              <a-button style="margin-left: 8px" @click="() => (this.queryParam = {})">重置</a-button>
             </span>
-          </a-col>        
+          </a-col>
         </a-row>
       </a-form>
     </div>
@@ -64,7 +67,7 @@
       <span slot="img" slot-scope="text, record">
         <a v-if="record.payType !== '3'" @click="showCzImgModel(record)">查看充值截图</a>
       </span>
-      <span slot="action" slot-scope="text, record">    
+      <span slot="action" slot-scope="text, record">
         <a v-if="record.status == '3'" @click="showReviewModal(record)">审核</a>
       </span>
     </s-table>
@@ -99,7 +102,7 @@
 <script>
 // import moment from 'moment'
 import { STable } from '@/components'
-import { rechargeList, verifyRecharge, typeInfo } from '@/api/manage'
+import { rechargeList, verifyRecharge } from '@/api/manage'
 import moment from 'moment'
 const columns = [
   {
@@ -128,7 +131,8 @@ const columns = [
   },
   {
     title: '截图',
-    dataIndex: 'img'
+    dataIndex: 'img',
+    scopedSlots: { customRender: 'img' }
   },
   {
     title: '拒绝理由',
@@ -149,10 +153,10 @@ const columns = [
     }
   },
   {
-      title: '操作',
-      dataIndex: 'action',
-      scopedSlots: { customRender: 'action' }
-  } 
+    title: '操作',
+    dataIndex: 'action',
+    scopedSlots: { customRender: 'action' }
+  }
 ]
 
 export default {
@@ -187,12 +191,12 @@ export default {
     }
   },
   created () {
-    typeInfo().then((res) => {
-        console.log(res, 'typeInfo')
-    })
+    // typeInfo().then((res) => {
+    //     console.log(res, 'typeInfo')
+    // })
   },
   methods: {
-      // 导出
+    // 导出
     handleOk () {
       // rechargeReview(this.exports).then(() => {
       //   this.visible = false
@@ -227,11 +231,9 @@ export default {
       this.advanced = !this.advanced
     },
     showCzImgModel (item) {
-    //   this.selectQrcode = item.czImg
-    //   this.visibleQrcode = true
-        this.$viewerApi({
-            images: [item.czImg]
-        })
+      this.$viewerApi({
+        images: [item.img]
+      })
     },
     showReviewModal (record) {
       this.reviewParams.id = record.id
@@ -240,18 +242,19 @@ export default {
     },
     submitReviewHandler () {
       this.confirmLoading = true
-      verifyRecharge(this.reviewParams).then(() => {
-        this.$notification.success({
-          message: '成功提示',
-          description: `操作成功`
+      verifyRecharge(this.reviewParams)
+        .then(() => {
+          this.$notification.success({
+            message: '成功提示',
+            description: `操作成功`
+          })
+          this.reviewVisible = false
+          this.confirmLoading = false
+          this.$refs.table.refresh(true)
         })
-        this.reviewVisible = false
-        this.confirmLoading = false
-        this.$refs.table.refresh(true)
-      })
-      .catch(() => {
-        this.confirmLoading = false
-      })
+        .catch(() => {
+          this.confirmLoading = false
+        })
     }
   }
 }
