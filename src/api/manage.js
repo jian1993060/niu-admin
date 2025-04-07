@@ -84,7 +84,7 @@ export function memberList (parameter) {
 
 export function upMemberType (parameter) {
   return request({
-      url: '/user/update',
+      url: '/user/update/type',
       method: 'post',
       data: parameter
   })
@@ -97,6 +97,16 @@ export function userDetail (parameter) {
       data: parameter
   })
 }
+
+export function updateBalance (parameter) {
+  return request({
+      url: '/user/update/balance',
+      method: 'post',
+      data: parameter
+  })
+}
+
+
 
 /**
  * 提现列表

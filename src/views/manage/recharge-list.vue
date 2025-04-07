@@ -111,6 +111,10 @@ const columns = [
     dataIndex: 'address'
   },
   {
+    title: '充值hash',
+    dataIndex: 'address'
+  },
+  {
     title: '充值金额',
     dataIndex: 'amount'
   },
@@ -125,34 +129,7 @@ const columns = [
   {
     title: '充值时间',
     dataIndex: 'createTime'
-  },
-  {
-    title: '截图',
-    dataIndex: 'img'
-  },
-  {
-    title: '拒绝理由',
-    dataIndex: 'info'
-  },
-  {
-    title: '审核状态',
-    dataIndex: 'status',
-    customRender: (text) => {
-      if (text === '1') {
-        return '审核通过'
-      } else if (text === '3') {
-        return '待审核'
-      } else if (text === '2') {
-        return '审核驳回'
-      }
-      return '未知'
-    }
-  },
-  {
-      title: '操作',
-      dataIndex: 'action',
-      scopedSlots: { customRender: 'action' }
-  } 
+  }
 ]
 
 export default {

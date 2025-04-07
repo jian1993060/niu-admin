@@ -148,14 +148,14 @@ export const asyncRouterMap = [
         name: 'Real',
         component: RouteView,
         redirect: '/real/real-list',
-        meta: { title: '开户审核', icon: 'dollar' },
+        meta: { title: '实名审核', icon: 'dollar' },
         hideChildrenInMenu: true, // 强制显示 MenuItem 而不是 SubMenu
         children: [
             {
                 path: '/real/real-list',
                 name: 'RealList',
                 component: () => import('@/views/manage/real-list'),
-                meta: { title: '开户审核', keepAlive: true }
+                meta: { title: '实名审核', keepAlive: true }
             }
         ]
       },
@@ -180,14 +180,14 @@ export const asyncRouterMap = [
         name: 'Recharge',
         component: RouteView,
         redirect: '/recharge/recharge-list',
-        meta: { title: '充值审核', icon: 'monitor' },
+        meta: { title: '充值记录', icon: 'monitor' },
         hideChildrenInMenu: true, // 强制显示 MenuItem 而不是 SubMenu
         children: [
             {
                 path: '/recharge/recharge-list',
                 name: 'RechargeManageList',
                 component: () => import('@/views/manage/recharge-list.vue'),
-                meta: { title: '充值审核', keepAlive: true }
+                meta: { title: '充值记录', keepAlive: true }
             }
         ]
       }

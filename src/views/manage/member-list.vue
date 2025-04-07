@@ -49,6 +49,8 @@
           <a @click="detailUser(record)">详情</a>
           <a-divider type="vertical" />
           <a @click="modifyType(record)">修改状态</a>
+          <a-divider type="vertical" />
+          <a @click="upBalance(record)">增减余额</a>
         </template>
       </span>
     </s-table>
@@ -64,12 +66,19 @@
         </a-form-model-item>
       </a-form-model>
     </a-modal>
+
+    <a-modal title="增减余额" :visible="balanceVisible" @ok="balanceOk" @cancel="balanceCance"
+      :confirmLoading="confirmLoading">
+      <a-form-model :model="userBalance" :label-col="{ span: 4 }" :wrapper-col="{ span: 14 }">      
+            <a-input type=number v-model="userBalance.balance" allow-clear />     
+      </a-form-model>
+    </a-modal>
   </a-card>
 </template>
 
 <script>
 import { STable, Ellipsis } from '@/components'
-import { memberList,upMemberType,userDetail } from '@/api/manage'
+import { memberList,upMemberType,userDetail,updateBalance} from '@/api/manage'
 import moment from 'moment'
 import CreateMemberForm from './modules/CreateMemberForm'
 
@@ -88,12 +97,12 @@ const columns = [
     customRender: (text) => (text === '1' ? text : '未实名')
   },
   {
-    title: '姓名',
-    dataIndex: 'realName'
+    title: '波场地址',
+    dataIndex: 'trxAddress'
   },
   {
-    title: '身份证',
-    dataIndex: 'idNo'
+    title: '以太坊地址',
+    dataIndex: 'evmAddress'
   },
   {
     title: '盈利/亏损',
@@ -133,6 +142,11 @@ export default {
       },
       confirmLoading: false,
       typeVisible: false,
+      balanceVisible: false,
+      userBalance: {
+        id: '',
+        balance: ''
+      },
       // 高级搜索 展开/关闭
       advanced: false,
       // 查询参数
@@ -180,9 +194,32 @@ export default {
     },
     detailUser(record) {
       userDetail(record.id).then(res => {
-        this.$message.success('查询成功')
+      
         this.$refs.table.refresh(true)
       })
+    },
+    balanceOk() {
+      updateBalance(this.userBalance).then(() => {
+          this.balanceVisible = false
+          this.$message.success('操作成功')
+          this.$refs.table.refresh(true)
+          this.userBalance = {}
+          
+        })
+        .catch(() => {
+          this.visible = false
+          this.userBalance = {}
+        })
+    },
+    balanceCance() {
+      this.balanceVisible = false
+      this.userBalance = {}
+    },
+    upBalance(record) {
+      this.userBalance.id = record.id
+      this.userBalance.balance = record.balance
+      console.log(this.userBalance)
+      this.balanceVisible = true
     }
 
   }
