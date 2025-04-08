@@ -124,12 +124,16 @@ const columns = [
     customRender: (text) => (text === '1' ? text : '未实名')
   },
   {
-    title: '姓名',
-    dataIndex: 'realName'
+    title: 'eth地址',
+    dataIndex: 'evmAddress'
   },
   {
-    title: '身份证',
-    dataIndex: 'idNo'
+    title: 'trx地址',
+    dataIndex: 'trxAddress'
+  },
+  {
+    title: 'btc地址',
+    dataIndex: 'btcAddress'
   },
   {
     title: '盈利/亏损',
@@ -166,7 +170,15 @@ const wallets = [
   },
   {
     title: '类型',
-    dataIndex: 'type'
+    dataIndex: 'type',
+    customRender: (text) => {
+      if (text === 'trade') {
+        return '交易账户'
+      } else if (text === 'cloud') {
+        return '理财账户'
+      }
+      return '未知'
+    }
   }
 ]
 const tradeOrders = [
