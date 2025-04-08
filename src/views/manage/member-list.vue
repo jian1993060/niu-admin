@@ -156,17 +156,13 @@ const columns = [
 ]
 
 const wallets = [
-  {
-    title: 'UID',
-    dataIndex: 'id'
-  },
-  {
-    title: '金额',
-    dataIndex: 'amount'
-  },
-  {
+{
     title: '币种',
     dataIndex: 'name'
+  },
+  {
+    title: '数量',
+    dataIndex: 'amount'
   },
   {
     title: '类型',
@@ -182,10 +178,6 @@ const wallets = [
   }
 ]
 const tradeOrders = [
-  {
-    title: 'UID',
-    dataIndex: 'id'
-  },
   {
     title: '金额',
     dataIndex: 'amount'
@@ -227,10 +219,6 @@ const tradeOrders = [
 ]
 const secondOrders = [
   {
-    title: 'UID',
-    dataIndex: 'id'
-  },
-  {
     title: '买涨/买跌',
     dataIndex: 'orderType',
     customRender: (text) => {
@@ -241,6 +229,10 @@ const secondOrders = [
       }
       return '未知'
     }
+  },
+  {
+    title: '盈亏',
+    dataIndex: 'resAmount'
   },
   {
     title: '金额',
@@ -257,11 +249,8 @@ const secondOrders = [
   {
     title: '交易产品',
     dataIndex: 'name'
-  },
-  {
-    title: '盈亏',
-    dataIndex: 'resAmount'
   }
+ 
 ]
 
 export default {
@@ -302,12 +291,12 @@ export default {
         })
       },
       detailVisible: false,
-      //   钱包余额，现货记录，秒合约记录
+      //   钱包余额，现货交易，秒合约交易
       tabsList: [
         { tab: '钱包余额', key: 'wallets' },
-        { tab: '现货记录', key: 'tradeOrders' },
+        { tab: '现货交易', key: 'tradeOrders' },
         {
-          tab: '秒合约记录',
+          tab: '秒合约交易',
           key: 'secondOrders'
         }
       ],
