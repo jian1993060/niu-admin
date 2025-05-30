@@ -222,12 +222,12 @@ const secondOrders = [
     title: '买涨/买跌',
     dataIndex: 'orderType',
     customRender: (text) => {
-      if (text === 'buy') {
-        return '买涨'
-      } else if (text === 'sale') {
-        return '买跌'
+      if (text === '2') {
+        return 'lock'
+      } else if (text === '1') {
+        return 'unLock'
       }
-      return '未知'
+      return 'finish'
     }
   },
   {

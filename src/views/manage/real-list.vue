@@ -78,6 +78,26 @@
       <a-modal title="收款二维码" :visible="visibleQrcode" @ok="visibleQrcode = false" @cancel="visibleQrcode = false">
         <img :src="selectQrcode" style="width: 100%" />
       </a-modal>
+      <a-modal
+        title="提现审核"
+        :visible="reviewVisible"
+        @ok="withdrawHandler()"
+        @cancel="reviewVisible = false"
+        :confirmLoading="confirmLoading"
+      >
+      <a-form-model :model="reviewParams" :label-col="{ span: 4 }" :wrapper-col="{ span: 14 }">
+          <a-form-model-item label="审核状态" prop="status" :rules="{ required: true }">
+            <a-radio-group v-model="reviewParams.status">
+              <!-- 1 2 3对应通过 未审核  驳回 -->
+              <a-radio value="1"> 通过 </a-radio>
+              <a-radio value="2"> 驳回 </a-radio>
+            </a-radio-group>
+          </a-form-model-item>
+          <a-form-model-item v-if="reviewParams.status == 2" label="驳回理由" prop="info" :rules="{ required: true }">
+            <a-input v-model="reviewParams.info" allow-clear />
+          </a-form-model-item>
+        </a-form-model>
+      </a-modal>
     </a-card>
   </template>
   
