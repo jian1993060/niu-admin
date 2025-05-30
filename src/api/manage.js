@@ -277,4 +277,14 @@ export function cloudDel (parameter) {
   })
 }
 
+export function addUserBalance (parameter) {
+  return request({
+      url: 'user/update/balance',
+      method: 'post',
+      data: parameter
+  })
+}
+
+
+
 

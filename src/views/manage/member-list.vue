@@ -58,6 +58,9 @@
           <a @click="detailUser(record)">详情</a>
           <a-divider type="vertical" />
           <a @click="modifyType(record)">修改状态</a>
+          <a-divider type="vertical" />
+          <a @click="addBalance(record)">上分</a>
+       
         </template>
       </span>
     </s-table>
@@ -75,6 +78,19 @@
             <a-radio value="loss"> 亏损</a-radio>
             <a-radio value="normal"> 正常</a-radio>
           </a-radio-group>
+        </a-form-model-item>
+      </a-form-model>
+    </a-modal>
+    <a-modal
+      :confirmLoading="confirmLoading"
+      :visible="upVisible"
+      title="上分"
+      @cancel="handleCancel"
+      @ok="handleOk"    
+    >
+      <a-form-model :label-col="{ span: 4 }" :model="balanceData" :wrapper-col="{ span: 14 }">
+        <a-form-model-item :rules="{ required: true }" label="上分金额" prop="balance">
+          <a-input v-model="balanceData.balance" />
         </a-form-model-item>
       </a-form-model>
     </a-modal>
@@ -105,7 +121,7 @@
 
 <script>
 import { STable, Ellipsis } from '@/components'
-import { memberList, upMemberType, userDetail } from '@/api/manage'
+import { memberList, upMemberType, userDetail,addUserBalance } from '@/api/manage'
 import moment from 'moment'
 import CreateMemberForm from './modules/CreateMemberForm'
 
@@ -275,6 +291,11 @@ export default {
       },
       confirmLoading: false,
       typeVisible: false,
+      upVisible: false,
+      balanceData: {
+        id: '',
+        balance: ''
+      },
       // 高级搜索 展开/关闭
       advanced: false,
       // 查询参数
@@ -312,6 +333,21 @@ export default {
       if (this.queryParam.startDate) {
         return current < moment(this.queryParam.startDate)
       }
+    },
+    addBalance(record) {
+      this.upVisible = true
+      this.balanceData.id = record.id
+    },
+    handleOk() {
+      addUserBalance(this.balanceData).then(res => {
+        this.upVisible = false
+        this.balanceData ={}
+        this.$refs.table.refresh(true)
+      })
+    },
+    handleCancel() {
+      this.upVisible = false
+      this.balanceData ={}
     },
     modifyType (record) {
       this.userType.id = record.id
