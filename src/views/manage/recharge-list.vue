@@ -110,12 +110,8 @@ const columns = [
     dataIndex: 'userId'
   },
   {
-    title: '充值地址',
-    dataIndex: 'address'
-  },
-  {
     title: '充值hash',
-    dataIndex: 'address'
+    dataIndex: 'hash'
   },
   {
     title: '充值金额',
