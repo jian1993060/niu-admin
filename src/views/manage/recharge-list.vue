@@ -119,7 +119,7 @@ const columns = [
   },
   {
     title: '充值币种',
-    dataIndex: 'name'
+    dataIndex: 'coinType'
   },
   {
     title: '充值链',
