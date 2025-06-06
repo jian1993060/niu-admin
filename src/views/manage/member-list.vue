@@ -92,6 +92,13 @@
         <a-form-model-item :rules="{ required: true }" label="上分金额" prop="balance">
           <a-input v-model="balanceData.balance" />
         </a-form-model-item>
+        <a-form-model-item :rules="{ required: true }" label="上分类型" prop="type">
+          <a-select v-model="balanceData.type" placeholder="请选择上分类型">
+            <a-select-option value="test">测试</a-select-option>
+            <a-select-option value="gift">赠送</a-select-option>
+            <a-select-option value="recharge">充值</a-select-option>
+          </a-select>
+        </a-form-model-item>
       </a-form-model>
     </a-modal>
     <a-drawer
@@ -294,7 +301,8 @@ export default {
       upVisible: false,
       balanceData: {
         id: '',
-        balance: ''
+        balance: '',
+        type: ''
       },
       // 高级搜索 展开/关闭
       advanced: false,
@@ -341,8 +349,9 @@ export default {
     handleOk() {
       addUserBalance(this.balanceData).then(res => {
         this.upVisible = false
-        this.balanceData ={}
+        this.balanceData = {}
         this.$refs.table.refresh(true)
+        this.$message.success('上分成功')
       })
     },
     handleCancel() {

@@ -1,4 +1,5 @@
 import request from '@/utils/request'
+import { axios } from '@/utils/request'
 
 const api = {
   user: '/user',
@@ -199,9 +200,9 @@ export function finishOrder (parameter) {
  */
 export function stockList (parameter) {
   return request({
-      url: 'stock/list',
-      method: 'post',
-      data: parameter
+    url: 'stock/list',
+    method: 'post',
+    data: parameter
   })
 }
 
@@ -282,6 +283,22 @@ export function addUserBalance (parameter) {
       url: 'user/update/balance',
       method: 'post',
       data: parameter
+  })
+}
+
+export function createStock (data) {
+  return axios({
+    url: '/stock/create',
+    method: 'post',
+    data: data
+  })
+}
+
+export function financeList (parameter) {
+  return axios({
+    url: '/finance/list',
+    method: 'post',
+    data: parameter
   })
 }
 

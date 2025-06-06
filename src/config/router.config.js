@@ -36,7 +36,7 @@ export const asyncRouterMap = [
         name: 'Member',
         component: RouteView,
         redirect: '/member/member-list',
-        meta: { title: '会员管理', icon: 'solution' },
+        meta: { title: '会员管理', icon: 'team' },
         hideChildrenInMenu: true, // 强制显示 MenuItem 而不是 SubMenu
         children: [
             {
@@ -48,11 +48,27 @@ export const asyncRouterMap = [
         ]
       },
       {
+        path: 'finance',
+        name: 'Finance',
+        component: RouteView,
+        redirect: '/finance/finance-list',
+        meta: { title: '财务管理', icon: 'money-collect' },
+        hideChildrenInMenu: true, // 强制显示 MenuItem 而不是 SubMenu
+        children: [
+            {
+                path: '/finance/finance-list',
+                name: 'FinanceMangeList',
+                component: () => import('@/views/manage/finance-list'),
+                meta: { title: '财务管理', keepAlive: true }
+            }
+        ]
+      },
+      {
         path: 'order',
         name: 'Order',
         component: RouteView,
         redirect: '/order/order-list',
-        meta: { title: '现货订单', icon: 'table' },
+        meta: { title: '现货订单', icon: 'shopping' },
         hideChildrenInMenu: true, // 强制显示 MenuItem 而不是 SubMenu
         children: [
             {
@@ -68,8 +84,8 @@ export const asyncRouterMap = [
         name: 'CloudOrder',
         component: RouteView,
         redirect: '/cloudOrder/cloudOrder-list',
-        meta: { title: '挖矿订单', icon: 'table' },
-        hideChildrenInMenu: true, // 强制显示 MenuItem 而不是 SubMenu
+        meta: { title: '挖矿订单', icon: 'cloud-server' },
+        hideChildrenInMenu: true,
         children: [
             {
                 path: '/cloudOrder/cloudOrder-list',
@@ -84,8 +100,8 @@ export const asyncRouterMap = [
         name: 'SecondOrder',
         component: RouteView,
         redirect: '/secondOrder/secondOrder-list',
-        meta: { title: '秒合约订单', icon: 'table' },
-        hideChildrenInMenu: true, // 强制显示 MenuItem 而不是 SubMenu
+        meta: { title: '秒合约订单', icon: 'thunderbolt' },
+        hideChildrenInMenu: true,
         children: [
             {
                 path: '/secondOrder/secondOrder-list',
@@ -100,8 +116,8 @@ export const asyncRouterMap = [
         name: 'Second',
         component: RouteView,
         redirect: '/second/second-list',
-        meta: { title: '秒合约产品', icon: 'dollar' },
-        hideChildrenInMenu: true, // 强制显示 MenuItem 而不是 SubMenu
+        meta: { title: '秒合约产品', icon: 'fund' },
+        hideChildrenInMenu: true,
         children: [
             {
                 path: '/second/second-list',
@@ -116,8 +132,8 @@ export const asyncRouterMap = [
         name: 'Cloud',
         component: RouteView,
         redirect: '/cloud/cloud-list',
-        meta: { title: '云挖矿产品', icon: 'dollar' },
-        hideChildrenInMenu: true, // 强制显示 MenuItem 而不是 SubMenu
+        meta: { title: '云挖矿产品', icon: 'cloud' },
+        hideChildrenInMenu: true,
         children: [
             {
                 path: '/cloud/cloud-list',
@@ -132,8 +148,8 @@ export const asyncRouterMap = [
         name: 'Stock',
         component: RouteView,
         redirect: '/stock/stock-list',
-        meta: { title: '币种管理', icon: 'dollar' },
-        hideChildrenInMenu: true, // 强制显示 MenuItem 而不是 SubMenu
+        meta: { title: '币种管理', icon: 'wallet' },
+        hideChildrenInMenu: true,
         children: [
             {
                 path: '/stock/stock-list',
@@ -148,8 +164,8 @@ export const asyncRouterMap = [
         name: 'Real',
         component: RouteView,
         redirect: '/real/real-list',
-        meta: { title: '实名审核', icon: 'dollar' },
-        hideChildrenInMenu: true, // 强制显示 MenuItem 而不是 SubMenu
+        meta: { title: '实名审核', icon: 'safety-certificate' },
+        hideChildrenInMenu: true,
         children: [
             {
                 path: '/real/real-list',
@@ -164,8 +180,8 @@ export const asyncRouterMap = [
         name: 'Withdraw',
         component: RouteView,
         redirect: '/withdraw/withdraw-list',
-        meta: { title: '提现审核', icon: 'dollar' },
-        hideChildrenInMenu: true, // 强制显示 MenuItem 而不是 SubMenu
+        meta: { title: '提现审核', icon: 'bank' },
+        hideChildrenInMenu: true,
         children: [
             {
                 path: '/withdraw/withdraw-list',
@@ -180,8 +196,8 @@ export const asyncRouterMap = [
         name: 'Recharge',
         component: RouteView,
         redirect: '/recharge/recharge-list',
-        meta: { title: '充值记录', icon: 'monitor' },
-        hideChildrenInMenu: true, // 强制显示 MenuItem 而不是 SubMenu
+        meta: { title: '充值记录', icon: 'pay-circle' },
+        hideChildrenInMenu: true,
         children: [
             {
                 path: '/recharge/recharge-list',
