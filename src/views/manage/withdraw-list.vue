@@ -116,6 +116,16 @@ const columns = [
 
   },
   {
+    title: '提现币种',
+    dataIndex: 'coinType'
+
+  },
+  {
+    title: '链',
+    dataIndex: 'chainType'
+
+  },
+  {
     title: '创建时间',
     dataIndex: 'createTime',
     sorter: true
