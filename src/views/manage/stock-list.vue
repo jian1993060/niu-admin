@@ -192,13 +192,11 @@
               logo: this.imageUrl
             }
             createStock(formData).then(res => {
-              if (res.code === 0) {
+             
                 this.$message.success('新增成功')
                 this.createVisible = false
                 this.$refs.table.refresh()
-              } else {
-                this.$message.error(res.message || '新增失败')
-              }
+             
             }).catch(err => {
               this.$message.error('新增失败：' + err.message)
             }).finally(() => {

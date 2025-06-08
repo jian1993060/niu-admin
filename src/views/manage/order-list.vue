@@ -60,7 +60,7 @@ const columns = [
     customRender: (text) => {
       if (text === 'buy') {
         return '买入'
-      } else if (text === 'sale') {
+      } else if (text === 'sell') {
         return '卖出'
       }
       return '未知'
