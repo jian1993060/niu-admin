@@ -132,7 +132,7 @@
         createVisible: false,
         confirmLoading: false,
         imageUrl: '',
-        uploadUrl: "https://arkfintechgroup.net/api/file/upload",  
+        uploadUrl: "https://tragpt.xyz/api/file/upload",  
         headers: {
           Authorization: 'Bearer ' + localStorage.getItem('Admin-Token')
         },
