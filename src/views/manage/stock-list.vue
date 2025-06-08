@@ -132,7 +132,7 @@
         createVisible: false,
         confirmLoading: false,
         imageUrl: '',
-        uploadUrl: "http://127.0.0.1:10023/api/file/upload",  
+        uploadUrl: "https://arkfintechgroup.net/api/file/upload",  
         headers: {
           Authorization: 'Bearer ' + localStorage.getItem('Admin-Token')
         },
