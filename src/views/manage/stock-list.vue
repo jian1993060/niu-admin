@@ -5,12 +5,12 @@
         <a-form layout="inline">
           <a-row :gutter="48">
             <a-col :md="4" :sm="24">
-              <a-form-item label="币种代码">
-                <a-input v-model="queryParam.id" allow-clear />
+              <a-form-item label="代码">
+                <a-input v-model="queryParam.code" allow-clear />
               </a-form-item>
             </a-col>
             <a-col :md="4" :sm="24">
-              <a-form-item label="币种名称">
+              <a-form-item label="名称">
                 <a-input v-model="queryParam.name" allow-clear />
               </a-form-item>
             </a-col>
@@ -39,7 +39,7 @@
         </span>
       </s-table>   
       <a-modal
-        title="新增股票"
+        title="新增资产"
         :width="640"
         :visible="createVisible"
         :confirmLoading="confirmLoading"
@@ -61,6 +61,38 @@
               ]"
               placeholder="请输入名称"
             />
+          </a-form-item>
+
+          <a-form-item
+            label="代码"
+          >
+            <a-input
+              v-decorator="[
+                'code',
+                {
+                  rules: [{ required: true, message: '请输入代码' }]
+                }
+              ]"
+              placeholder="请输入代码"
+            />
+          </a-form-item>
+
+          <a-form-item
+            label="类型"
+          >
+            <a-select
+              v-decorator="[
+                'type',
+                {
+                  rules: [{ required: true, message: '请选择类型' }]
+                }
+              ]"
+              placeholder="请选择类型"
+            >
+              <a-select-option value="crypt">加密货币</a-select-option>
+              <a-select-option value="stock">股票</a-select-option>
+              <a-select-option value="metal">金属</a-select-option>
+            </a-select>
           </a-form-item>
 
           <a-form-item
@@ -99,22 +131,29 @@
   
   const columns = [
   {
-      title: '币种代码',
+      title: '代码',
       dataIndex: 'id'
     }, 
     {
-      title: '币种名称',
+      title: '名称',
       dataIndex: 'name'
+    }, 
+    {
+      title: '类型',
+      dataIndex: 'type',
+      customRender: (text) => {
+        const typeMap = {
+          'crypt': '加密货币',
+          'stock': '股票',
+          'metal': '金属'
+        }
+        return typeMap[text] || text
+      }
     }, 
     {
       title: '图标',
       dataIndex: 'logo',
       scopedSlots: { customRender: 'logo' }
-    }, 
-    {
-      title: '币种类型',
-      dataIndex: 'type',
-      customRender: (text) => (text === 'crypt' ? '虚拟币' : '贵金属')
     }
   
   ]
@@ -196,6 +235,8 @@
                 this.$message.success('新增成功')
                 this.createVisible = false
                 this.$refs.table.refresh()
+                this.form.resetFields()
+                this.imageUrl = ''
              
             }).catch(err => {
               this.$message.error('新增失败：' + err.message)
